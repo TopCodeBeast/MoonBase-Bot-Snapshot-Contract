@@ -40,7 +40,7 @@ impl Snapshot {
     assert!(env::block_timestamp() - timestamp < 120_000_000_000, "signature expired");
     let sign: Vec<u8> = bs58::decode(sign).into_vec().unwrap();
     let pk: Vec<u8> = bs58::decode(self.public_key.clone()).into_vec().unwrap();
-    let json = json!(env::predecessor_account_id().to_string() + &timestamp.to_string()).to_string();
+    let json = json!(env::predecessor_account_id().to_string() + &timestamp.to_string() + &contract_address.to_string()).to_string();
     utils::verify(json.into_bytes(), sign.into(), pk.into());
 
     let hash = utils::get_hash(env::block_height(), contract_address.clone());
@@ -58,7 +58,7 @@ impl Snapshot {
     assert!(env::block_timestamp() - timestamp < 120_000_000_000, "signature expired");
     let sign: Vec<u8> = bs58::decode(sign).into_vec().unwrap();
     let pk: Vec<u8> = bs58::decode(self.public_key.clone()).into_vec().unwrap();
-    let json = json!(env::predecessor_account_id().to_string() + &timestamp.to_string()).to_string();
+    let json = json!(env::predecessor_account_id().to_string() + &timestamp.to_string() + &contract_address.to_string()).to_string();
     utils::verify(json.into_bytes(), sign.into(), pk.into());
   
     self.details.remove(&hash);
