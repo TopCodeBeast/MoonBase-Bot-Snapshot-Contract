@@ -1,4 +1,4 @@
-# Nepbot-snapshot
+# moonbasebot-snapshot
 
 Smart contract to keep track of the board.
 
